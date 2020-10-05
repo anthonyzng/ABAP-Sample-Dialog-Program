@@ -1,0 +1,87 @@
+*----------------------------------------------------------------------*
+***INCLUDE ZSAPAN_DIALOG_PROG_USER_COMI01.
+*----------------------------------------------------------------------*
+*&---------------------------------------------------------------------*
+*&      Module  USER_COMMAND_1788  INPUT
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+************************************************************************
+*                  T A B L E S                                         *
+************************************************************************
+TABLES: T001.
+************************************************************************
+*                  T Y P E S                                           *
+************************************************************************
+TYPES : BEGIN OF cm_tab,
+        comco TYPE T001-BUKRS,  "Company Code
+        comna TYPE T001-BUTXT,  "Company Name
+        END OF cm_tab.
+************************************************************************
+*                  I N T E R N A L       T A B L E                     *
+************************************************************************
+DATA: it_cm TYPE TABLE OF cm_tab.
+************************************************************************
+*                  W O R K               A R E A                       *
+************************************************************************
+DATA: wa_cm TYPE cm_tab.
+************************************************************************
+*                  C O N S T A N T S                                   *
+************************************************************************
+DATA: OUT3263 TYPE c LENGTH 50,
+      COMCO TYPE C LENGTH 100,
+      COMNA TYPE C LENGTH 100.
+
+MODULE USER_COMMAND_1788 INPUT.
+    CASE SY-UCOMM.
+        WHEN 'SEARCH'.
+          IF COMCO NE '' OR COMNA NE ''.
+            SELECT SINGLE BUKRS BUTXT FROM T001 INTO wa_cm  WHERE BUKRS = COMCO OR BUTXT = COMNA .
+              CONCATENATE 'Company Code : ' wa_cm-comco 'Company Name :' wa_cm-comna INTO OUT3263.
+          ELSE.
+            OUT3263 = 'Please Input a Company Code or Name'.
+          ENDIF.
+        WHEN 'CLEAR'.
+          OUT3263 = ''.
+          COMCO = ''.
+          COMNA = ''.
+        WHEN 'EXIT'.
+          LEAVE PROGRAM.
+    ENDCASE.
+ENDMODULE.
+
+MODULE help_comco.
+  SELECT BUKRS BUTXT FROM T001 INTO TABLE it_cm.
+
+    CALL FUNCTION 'F4IF_INT_TABLE_VALUE_REQUEST'
+      EXPORTING
+        RETFIELD               =  'comco'
+       DYNPPROG               = sy-repid
+       DYNPNR                 = sy-dynnr
+       DYNPROFIELD            = 'F1'
+       VALUE_ORG              = 'S'
+       CALLBACK_PROGRAM       = 'sy-repid'
+      TABLES
+        VALUE_TAB              = it_cm.
+    IF SY-SUBRC <> 0.
+* Implement suitable error handling here
+    ENDIF.
+ENDMODULE.
+
+MODULE help_comna.
+  SELECT BUKRS BUTXT FROM T001 INTO TABLE it_cm.
+  CALL FUNCTION 'F4IF_INT_TABLE_VALUE_REQUEST'
+      EXPORTING
+        RETFIELD               =  'comna'
+       DYNPPROG               = sy-repid
+       DYNPNR                 = sy-dynnr
+       DYNPROFIELD            = 'F1'
+       VALUE_ORG              = 'S'
+       CALLBACK_PROGRAM       = 'sy-repid'
+      TABLES
+        VALUE_TAB              = it_cm.
+    IF SY-SUBRC <> 0.
+* Implement suitable error handling here
+    ENDIF.
+
+ENDMODULE.
