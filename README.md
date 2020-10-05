@@ -27,3 +27,13 @@ This a sample Dialog Program ,hope it can help you :D
 ![image](https://github.com/anthonyzng/ABAP-Sample-Dialog-Program/blob/master/img/step23.png)
 ![image](https://github.com/anthonyzng/ABAP-Sample-Dialog-Program/blob/master/img/step24.png)
 ![image](https://github.com/anthonyzng/ABAP-Sample-Dialog-Program/blob/master/img/step25.png)
+
+Addition Dialog Program with search help
+
+![image](https://github.com/anthonyzng/ABAP-Sample-Dialog-Program/blob/master/ABAP-Dialog%20Program_CURD_search-help/img/step1.png)
+![image](https://github.com/anthonyzng/ABAP-Sample-Dialog-Program/blob/master/ABAP-Dialog%20Program_CURD_search-help/img/step2.png)
+![image](https://github.com/anthonyzng/ABAP-Sample-Dialog-Program/blob/master/ABAP-Dialog%20Program_CURD_search-help/img/step3.png)
+![image](https://github.com/anthonyzng/ABAP-Sample-Dialog-Program/blob/master/ABAP-Dialog%20Program_CURD_search-help/img/step4.png)
+![image](https://github.com/anthonyzng/ABAP-Sample-Dialog-Program/blob/master/ABAP-Dialog%20Program_CURD_search-help/img/step5.png)
+![image](https://github.com/anthonyzng/ABAP-Sample-Dialog-Program/blob/master/ABAP-Dialog%20Program_CURD_search-help/img/step6.png)
+![image](https://github.com/anthonyzng/ABAP-Sample-Dialog-Program/blob/master/ABAP-Dialog%20Program_CURD_search-help/img/step7.png)
